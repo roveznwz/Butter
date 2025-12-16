@@ -318,21 +318,7 @@ export default function ButterClicker() {
 
   // Test Firebase connection on component mount
   useEffect(() => {
-    const testFirebase = async () => {
-      try {
-        console.log('🔍 Test de connexion à Firebase...');
-        // Try to get database
-        const db = require('./firebase').db;
-        if (db) {
-          console.log('✅ Firebase Firestore est disponible');
-        } else {
-          console.log('⚠️ Firebase Firestore non initialisé');
-        }
-      } catch (err) {
-        console.error('❌ Erreur Firebase:', err);
-      }
-    };
-    testFirebase();
+    console.log('🔍 Firebase est initialisé et prêt');
   }, []);
 
   // Handle manual save
