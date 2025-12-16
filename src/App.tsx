@@ -411,7 +411,7 @@ export default function ButterClicker() {
     // Et toutes les 3 secondes
     const interval = setInterval(saveToStorage, 3000);
     return () => clearInterval(interval);
-  }, [user, butter, totalButter, clickPower, clicks, multiplier, multiplierTime, prestige, prestigeBonus, buildings, upgrades, achievements]);
+  }, [butter, totalButter, clickPower, clicks, multiplier, multiplierTime, prestige, prestigeBonus, buildings, upgrades, achievements, user]);
 
   // Handlers
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -605,7 +605,7 @@ export default function ButterClicker() {
             {/* Shop */}
             <div>
               <h2 className="text-3xl font-black text-white mb-4">🏪 BOUTIQUE</h2>
-              <div className="grid grid-cols-1 gap-1 max-h-[380px] overflow-y-auto">
+              <div className="grid grid-cols-1 gap-1 max-h-[380px] overflow-hidden rounded-lg">
                 {buildings.map((b, i) => {
                   // Afficher les 5 premiers ou ceux dont le prédécesseur a au moins 1 exemplaire
                   const isVisible = i < 5 || (i > 0 && buildings[i - 1].count > 0);
@@ -616,7 +616,7 @@ export default function ButterClicker() {
                     key={b.name}
                     onClick={() => buyBuilding(i)}
                     disabled={butter < b.cost}
-                    className={`p-2 rounded-xl text-left font-bold transition-all duration-200 ${butter >= b.cost ? 'bg-gradient-to-r from-gray-700 to-gray-600 text-white hover:from-gray-600 hover:to-gray-500 shadow-lg hover:shadow-cyan-400/30 border-2 border-cyan-400 hover:border-cyan-300 scale-100 hover:scale-105' : 'bg-gray-800 text-gray-500 opacity-40 cursor-not-allowed'}`}
+                    className={`p-2 rounded-xl text-left font-bold transition-all duration-200 ${butter >= b.cost ? 'bg-gradient-to-r from-gray-700 to-gray-600 text-white hover:from-gray-600 hover:to-gray-500 shadow-lg hover:shadow-cyan-500/50 border-2 border-cyan-400 hover:border-cyan-300' : 'bg-gray-800 text-gray-500 opacity-40 cursor-not-allowed'}`}
                   >
                     <div className="flex items-center gap-1 mb-1">
                       <span className="text-2xl">{b.emoji}</span>
@@ -638,7 +638,7 @@ export default function ButterClicker() {
             {/* Upgrades */}
             <div>
               <h2 className="text-3xl font-black text-white mb-4">⚡ Améliorations</h2>
-              <div className="grid grid-cols-1 gap-1 max-h-[380px] overflow-y-auto">
+              <div className="grid grid-cols-1 gap-1 max-h-[380px] overflow-hidden rounded-lg">
                 {upgrades.map((u, i) => {
                   // Afficher les 5 premières ou celles dont la prédécesseur a au moins 1 exemplaire
                   const isVisible = i < 5 || (i > 0 && upgrades[i - 1].count > 0);
@@ -650,8 +650,8 @@ export default function ButterClicker() {
                     onClick={() => buyUpgrade(i)}
                     disabled={butter < u.cost || totalButter < u.requirement}
                     className={`p-2 rounded-xl text-left font-bold transition-all duration-200 ${
-                        u.count > 0 ? 'bg-gradient-to-r from-cyan-600 to-cyan-500 text-white shadow-lg shadow-cyan-500/50 border-2 border-cyan-300 hover:from-cyan-500 hover:to-cyan-400 scale-100 hover:scale-105' 
-                        : butter >= u.cost && totalButter >= u.requirement ? 'bg-gradient-to-r from-gray-700 to-gray-600 text-white hover:from-gray-600 hover:to-gray-500 shadow-lg hover:shadow-cyan-400/30 border-2 border-cyan-400 hover:border-cyan-300 scale-100 hover:scale-105' 
+                        u.count > 0 ? 'bg-gradient-to-r from-cyan-600 to-cyan-500 text-white shadow-lg shadow-cyan-500/50 border-2 border-cyan-300 hover:from-cyan-500 hover:to-cyan-400 hover:shadow-cyan-400/80' 
+                        : butter >= u.cost && totalButter >= u.requirement ? 'bg-gradient-to-r from-gray-700 to-gray-600 text-white hover:from-gray-600 hover:to-gray-500 shadow-lg hover:shadow-cyan-500/50 border-2 border-cyan-400 hover:border-cyan-300' 
                       : 'bg-gray-800 text-gray-500 opacity-40 cursor-not-allowed'
                     }`}
                   >
