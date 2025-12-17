@@ -19,8 +19,22 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();
 
-export const signInWithGoogle = () => {
-  return signInWithPopup(auth, googleProvider);
+export const signInWithGoogle = async () => {
+  try {
+    console.log('🔐 Starting Google Sign In popup...');
+    const result = await signInWithPopup(auth, googleProvider);
+    console.log('✅ Google Sign In successful:', result.user.email);
+    return result;
+  } catch (error: any) {
+    console.error('❌ Google Sign In error:', error.code, error.message);
+    if (error.code === 'auth/popup-closed-by-user') {
+      throw new Error('Connexion annulée par l\'utilisateur');
+    }
+    if (error.code === 'auth/network-request-failed') {
+      throw new Error('Erreur réseau - vérifiez votre connexion');
+    }
+    throw error;
+  }
 };
 
 export const signOut = () => {

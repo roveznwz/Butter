@@ -35,9 +35,11 @@ export const useAuth = () => {
     try {
       console.log('Attempting Google sign in...');
       await signInWithGoogle();
+      setError(null);
     } catch (error: any) {
       console.error("Erreur lors de la connexion Google:", error);
-      setError(error.message);
+      setError(error.message || 'Erreur de connexion Google');
+      throw error;
     }
   };
 
