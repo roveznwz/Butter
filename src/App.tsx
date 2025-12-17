@@ -537,7 +537,6 @@ export default function ButterClicker() {
         
         <div className="flex justify-center gap-2 mb-12 flex-wrap">
           <div className="bg-gray-700/80 backdrop-blur border border-cyan-400 px-4 py-2 rounded-xl font-bold text-cyan-300 shadow-lg hover:bg-gray-700 transition">📊 Niv. {level}</div>
-
           <div className="bg-gray-700/80 backdrop-blur border border-cyan-400 px-4 py-2 rounded-xl font-bold text-cyan-300 shadow-lg hover:bg-gray-700 transition">🏆 Succès {unlockedAchievements}/{achievements.length}</div>
           <div className="bg-gray-700/80 backdrop-blur border border-cyan-400 px-4 py-2 rounded-xl font-bold text-cyan-300 shadow-lg hover:bg-gray-700 transition">👑 {prestige}</div>
           <button onClick={handlePrestige} disabled={totalButter < 1000000} className={`px-6 py-2 rounded-xl font-black transition ${totalButter >= 1000000 ? 'bg-cyan-600 hover:bg-cyan-700 text-white shadow-lg border border-cyan-400' : 'bg-gray-700/50 text-gray-400 cursor-not-allowed'}`}>
